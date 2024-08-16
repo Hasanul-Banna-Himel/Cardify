@@ -1,36 +1,40 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Cardify
 
-## Getting Started
+Cardify is an AI-powered flashcards application designed to help users learn and remember Gen Z words and phrases. Built with Next.js, Chakra UI, Firebase, and Vercel, Cardify offers a modern and slick user interface tailored for Gen Z users.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Modern UI:** A stylish design inspired by Gen Z aesthetics to make learning engaging.
+- **AI-Powered Flashcards:** Utilize AI to generate and manage flashcards with Gen Z terminology.
+- **Responsive Design:** Optimized for both mobile and desktop devices.
+- **Real-Time Sync:** Sync flashcards and user progress with Firebase.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Usage
+**Create Flashcards:** Add new flashcards featuring Gen Z words and their meanings.
+**Review Flashcards:** Swipe through flashcards to learn and remember new terms.
+**Track Progress:** Monitor your learning progress and revisit flashcards as needed.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Technologies
+**Next.js:** React framework for server-side rendering and static site generation.
+**Chakra UI:** Component library for building accessible and responsive UIs.
+**Firebase:** Backend services for authentication and real-time database.
+**Vercel:** Platform for deploying and hosting Next.js applications.
 
-## Learn More
+## Contributing
+If you want to contribute to Cardify, follow these steps:
 
-To learn more about Next.js, take a look at the following resources:
+1. Fork the repository.
+2. Create a new branch (git checkout -b feature/YourFeature).
+3. Make your changes and commit them (git commit -am 'Add some feature').
+4. Push to the branch (git push origin feature/YourFeature).
+5. Open a pull request.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## License
+Distributed under the MIT License. See LICENSE for more details.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Acknowledgements
+**Next.js:** For providing a robust React framework.
+**Chakra UI:** For the versatile UI component library.
+**Firebase:** For reliable backend services.
+**Vercel:** For seamless deployment and hosting.
