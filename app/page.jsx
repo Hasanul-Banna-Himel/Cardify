@@ -3,7 +3,7 @@ import Hero from '../components/Hero';
 import Features from '../components/Features';
 import FAQ from '../components/FAQ';
 import Footer from '../components/Footer';
-import Testimonial from '@/components/Testimonial';
+import Founders from '@/components/Founders';
 
 export default function HomePage() {
   return (
@@ -11,7 +11,7 @@ export default function HomePage() {
       <Navbar />
       <Hero />
       <Features />
-      <Testimonial />
+      <Founders />
       <FAQ />
       <Footer />
     </>

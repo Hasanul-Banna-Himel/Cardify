@@ -15,6 +15,8 @@ module.exports = {
           error: "#ef4444", // A striking red for errors
         },
       },
+      "dark",  // Default dark theme
+      "cupcake" // Additional cupcake theme
     ],
   },
   darkMode: ["class"],
