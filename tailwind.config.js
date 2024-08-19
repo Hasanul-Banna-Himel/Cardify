@@ -3,16 +3,16 @@ module.exports = {
   daisyui: {
     themes: [
       {
-        mytheme: {
-          primary: "#ff00ff",
-          secondary: "#ff0000",
-          accent: "#00ff00",
-          neutral: "#ffffff",
-          "base-100": "#ffffff",
-          info: "#0000ff",
-          success: "#ff00ff",
-          warning: "#ffff00",
-          error: "#ff0000",
+        customTheme: {
+          primary: "#1e3a8a", // A deep blue
+          secondary: "#9333ea", // A vibrant purple
+          accent: "#f59e0b", // A warm amber
+          neutral: "#1f2937", // A dark gray
+          "base-100": "#f3f4f6", // A light gray background
+          info: "#0ea5e9", // A bright blue for info
+          success: "#10b981", // A fresh green for success
+          warning: "#f97316", // A bold orange for warnings
+          error: "#ef4444", // A striking red for errors
         },
       },
     ],
@@ -34,35 +34,52 @@ module.exports = {
     },
     extend: {
       colors: {
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
-      },
-      borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
+        primary: {
+          DEFAULT: "#1e3a8a",
+          foreground: "#ffffff",
+        },
+        secondary: {
+          DEFAULT: "#9333ea",
+          foreground: "#ffffff",
+        },
+        accent: {
+          DEFAULT: "#f59e0b",
+          foreground: "#ffffff",
+        },
+        neutral: {
+          DEFAULT: "#1f2937",
+          foreground: "#ffffff",
+        },
+        info: {
+          DEFAULT: "#0ea5e9",
+          foreground: "#ffffff",
+        },
+        success: {
+          DEFAULT: "#10b981",
+          foreground: "#ffffff",
+        },
+        warning: {
+          DEFAULT: "#f97316",
+          foreground: "#ffffff",
+        },
+        error: {
+          DEFAULT: "#ef4444",
+          foreground: "#ffffff",
+        },
       },
       keyframes: {
         fadeIn: {
-          "0%": { opacity: "0" },
-          "100%": { opacity: "1" },
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
         },
-        slideUp: {
-          "0%": { transform: "translateY(20px)", opacity: "0" },
-          "100%": { transform: "translateY(0)", opacity: "1" },
-        },
-        bounce: {
-          "0%, 100%": { transform: "translateY(-10%)" },
-          "50%": { transform: "translateY(0)" },
+        slideIn: {
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(0)' },
         },
       },
       animation: {
-        fadeIn: "fadeIn 1s ease-in-out",
-        slideUp: "slideUp 0.5s ease-in-out",
-        bounce: "bounce 1s ease-in-out",
+        fadeIn: 'fadeIn 2s ease-in-out',
+        slideIn: 'slideIn 1s ease-in-out',
       },
     },
   },

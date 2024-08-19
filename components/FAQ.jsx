@@ -1,44 +1,59 @@
+import React from "react";
+
 export default function FAQ() {
-    return (
-      <section className="bg-info text-info-content p-10">
-        <div className="container mx-auto flex flex-col lg:flex-row">
-          <div className="lg:w-1/2">
-            <h2 className="text-4xl font-bold">Frequently Asked Questions</h2>
-            <p className="mt-4">
-              Here are some of the most common questions about our app.
-            </p>
-          </div>
-          <div className="lg:w-1/2 space-y-4">
-            <div className="collapse bg-base-200">
-              <input type="checkbox" className="peer" />
-              <div className="collapse-title bg-primary text-primary-content peer-checked:bg-secondary peer-checked:text-secondary-content">
-                What is Cardify?
-              </div>
-              <div className="collapse-content bg-primary text-primary-content peer-checked:bg-secondary peer-checked:text-secondary-content">
-                <p>Cardify is a flashcard app designed to help you learn faster and more efficiently by creating and managing custom flashcards.</p>
-              </div>
-            </div>
-            <div className="collapse bg-base-200">
-              <input type="checkbox" className="peer" />
-              <div className="collapse-title bg-primary text-primary-content peer-checked:bg-secondary peer-checked:text-secondary-content">
-                How does Cardify work?
-              </div>
-              <div className="collapse-content bg-primary text-primary-content peer-checked:bg-secondary peer-checked:text-secondary-content">
-                <p>Simply create decks of flashcards, review them, and track your progress with our interactive and easy-to-use interface.</p>
-              </div>
-            </div>
-            <div className="collapse bg-base-200">
-              <input type="checkbox" className="peer" />
-              <div className="collapse-title bg-primary text-primary-content peer-checked:bg-secondary peer-checked:text-secondary-content">
-                Is Cardify free?
-              </div>
-              <div className="collapse-content bg-primary text-primary-content peer-checked:bg-secondary peer-checked:text-secondary-content">
-                <p>Yes, Cardify offers a free version with basic features, as well as premium plans for advanced users.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    );
-  }
-  
+  return (
+    <section className="p-10 bg-base-100 text-base-content">
+      <h2 className="text-3xl font-bold text-center mb-8">Frequently Asked Questions</h2>
+      <div className="space-y-4">
+        <details className="group">
+          <summary className="font-semibold bg-neutral text-neutral-content px-4 py-2 cursor-pointer">
+            What is Cardify?
+          </summary>
+          <p className="text-base-content bg-neutral-content group-open:animate-fadeIn p-4">
+            Cardify is an AI-powered flashcard app designed to make learning simple and effective.
+          </p>
+        </details>
+        <details className="group">
+          <summary className="font-semibold bg-neutral text-neutral-content px-4 py-2 cursor-pointer">
+            How does Cardify use AI?
+          </summary>
+          <p className="text-base-content bg-neutral-content group-open:animate-fadeIn p-4">
+            Cardify uses AI to personalize your learning experience by adapting to your progress and highlighting key areas for improvement.
+          </p>
+        </details>
+        <details className="group">
+          <summary className="font-semibold bg-neutral text-neutral-content px-4 py-2 cursor-pointer">
+            Can I use Cardify for free?
+          </summary>
+          <p className="text-base-content bg-neutral-content group-open:animate-fadeIn p-4">
+            Yes, Cardify offers a free tier with essential features. Premium plans are available for advanced functionalities.
+          </p>
+        </details>
+        <details className="group">
+          <summary className="font-semibold bg-neutral text-neutral-content px-4 py-2 cursor-pointer">
+            Is Cardify available on mobile devices?
+          </summary>
+          <p className="text-base-content bg-neutral-content group-open:animate-fadeIn p-4">
+            Yes, Cardify is available as a mobile app for both iOS and Android platforms.
+          </p>
+        </details>
+        <details className="group">
+          <summary className="font-semibold bg-neutral text-neutral-content px-4 py-2 cursor-pointer">
+            How can I track my progress on Cardify?
+          </summary>
+          <p className="text-base-content bg-neutral-content group-open:animate-fadeIn p-4">
+            Cardify provides detailed progress reports and analytics to help you track your learning journey.
+          </p>
+        </details>
+        <details className="group">
+          <summary className="font-semibold bg-neutral text-neutral-content px-4 py-2 cursor-pointer">
+            Can I share my flashcards with others?
+          </summary>
+          <p className="text-base-content bg-neutral-content group-open:animate-fadeIn p-4">
+            Yes, Cardify allows you to share your flashcards with friends or the community for collaborative learning.
+          </p>
+        </details>
+      </div>
+    </section>
+  );
+}
