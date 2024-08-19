@@ -1,40 +1,66 @@
 # Cardify
+Cardify is an advanced flashcard app designed to enhance learning and retention through interactive flashcards. Whether you're a student, a professional, or just someone eager to learn, Cardify offers a simple and effective way to manage and review your flashcards.
 
-Cardify is an AI-powered flashcards application designed to help users learn and remember Gen Z words and phrases. Built with Next.js, Chakra UI, Firebase, and Vercel, Cardify offers a modern and slick user interface tailored for Gen Z users.
 
 ## Features
+> Create and Manage Flashcards: Easily create, edit, and delete flashcards.
+> Organize Decks: Group your flashcards into decks for better organization.
+> Review Mode: Test your knowledge with an interactive review mode.
+> Progress Tracking: Track your progress and improvement over time.
+> Customizable Themes: Choose from various themes to customize the look and feel of the app.
 
-- **Modern UI:** A stylish design inspired by Gen Z aesthetics to make learning engaging.
-- **AI-Powered Flashcards:** Utilize AI to generate and manage flashcards with Gen Z terminology.
-- **Responsive Design:** Optimized for both mobile and desktop devices.
-- **Real-Time Sync:** Sync flashcards and user progress with Firebase.
+## Installation
+1. Prerequisites
+> Node.js (v16 or higher)
+> npm (v8 or higher) or Yarn
 
+2. Clone the Repository
+```
+git clone https://github.com/your-username/cardify.git
+cd cardify
+```
+
+3. Install Dependencies
+```
+npm install
+```
+ or
+```
+yarn install
+```
+4. Running the Development Server
+```
+npm run dev
+```
+ or
+```
+yarn dev
+```
+
+5. Open your browser and navigate to http://localhost:3000 to view the app.
 
 ## Usage
-**Create Flashcards:** Add new flashcards featuring Gen Z words and their meanings.
-**Review Flashcards:** Swipe through flashcards to learn and remember new terms.
-**Track Progress:** Monitor your learning progress and revisit flashcards as needed.
+1. Create a New Deck:
+> Go to the Decks section and click on "Create New Deck."
 
-## Technologies
-**Next.js:** React framework for server-side rendering and static site generation.
-**Chakra UI:** Component library for building accessible and responsive UIs.
-**Firebase:** Backend services for authentication and real-time database.
-**Vercel:** Platform for deploying and hosting Next.js applications.
+2. Add flashcards to the deck.
+3. Review Flashcards:
+> Select a deck and start reviewing the flashcards.
+
+4. Track Your Progress:
+> Check the Progress section to see your performance over time.
 
 ## Contributing
-If you want to contribute to Cardify, follow these steps:
+We welcome contributions to improve Cardify! Here’s how you can contribute:
 
-1. Fork the repository.
-2. Create a new branch (git checkout -b feature/YourFeature).
-3. Make your changes and commit them (git commit -am 'Add some feature').
-4. Push to the branch (git push origin feature/YourFeature).
-5. Open a pull request.
+> Fork the repository.
+> Create a new branch: git checkout -b feature/your-feature.
+> Make your changes and commit them: git commit -am 'Add new feature'.
+> Push to the branch: git push origin feature/your-feature.
+> Create a pull request.
 
 ## License
-Distributed under the MIT License. See LICENSE for more details.
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-## Acknowledgements
-**Next.js:** For providing a robust React framework.
-**Chakra UI:** For the versatile UI component library.
-**Firebase:** For reliable backend services.
-**Vercel:** For seamless deployment and hosting.
+## Contact
+For questions or feedback, please contact us.
