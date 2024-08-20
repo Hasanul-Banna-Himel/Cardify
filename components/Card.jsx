@@ -1,6 +1,5 @@
 'use client';
 
-
 import { useUser } from '@clerk/nextjs';
 import { Box, Container, Paper, TextField, Typography, Button, Grid, Card, CardActionArea, CardContent } from '@mui/material';
 import { useRouter } from 'next/navigation';
