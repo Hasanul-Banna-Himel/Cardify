@@ -8,7 +8,7 @@ export default function Hero() {
         backgroundImage: "url('https://img.daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.webp')",
       }}
     >
-      <div className="hero-overlay bg-opacity-60"></div>
+      <div className="hero-overlay bg-opacity-70"></div>
       <div className="hero-content text-center animate-slideIn">
         <div className="max-w-lg">
           <h1 className="mb-5 text-5xl font-bold">Welcome to Cardify</h1>
