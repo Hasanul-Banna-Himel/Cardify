@@ -1,9 +1,9 @@
 import React from "react";
 
-export default function Hero() {
+export default function Hero({onButtonClick}) {
   return (
     <section
-      className="hero min-h-screen bg-neutral text-neutral-content"
+      className="hero min-h-screen bg-neutral text-primary"
       style={{
         backgroundImage: "url('https://img.daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.webp')",
       }}
@@ -15,7 +15,7 @@ export default function Hero() {
           <p className="mb-5">
             Your ultimate tool for creating, organizing, and mastering flashcards. Start learning more efficiently today.
           </p>
-          <button className="btn btn-primary">Get Started</button>
+          <button onClick={onButtonClick} className="btn btn-primary">Get Started</button>
         </div>
       </div>
     </section>

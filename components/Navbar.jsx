@@ -22,14 +22,14 @@ export default function Navbar() {
           <ul
             tabIndex={0}
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-            <li><a>Key Features</a></li>
-            <li><a>Testimonial</a></li>
-            <li><a>FAQ</a></li>
+            <li><a className="hover:text-accent">Key Features</a></li>
+            <li><a className="hover:text-accent">Founders</a></li>
+            <li><a className="hover:text-accent">FAQ</a></li>
           </ul>
         </div>
       </div>
       <div className="navbar-center">
-        <a className="btn btn-ghost text-xl">Cardify</a>
+        <a className="btn btn-ghost text-xl hover:text-accent">Cardify</a>
       </div>
       <div className="navbar-end">
         <button className="btn btn-ghost btn-circle">
