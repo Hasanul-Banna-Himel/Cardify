@@ -1,143 +1,83 @@
 'use client';
+import React, { useState } from 'react';
+import { FlashCard } from 'react-flashcards';
 
-import { useState, useEffect } from 'react';
+export default function FlashcardGenerator() {
+  const [flashcards, setFlashcards] = useState([]);
+  const [question, setQuestion] = useState('');
+  const [answer, setAnswer] = useState('');
 
-export default function Generate() {
-    const [flashcards, setFlashcards] = useState([]);
-    const [flipped, setFlipped] = useState({});
-    const [text, setText] = useState('');
+  const handleAddCard = () => {
+    if (question && answer) {
+      setFlashcards([...flashcards, { front: question, back: answer }]);
+      setQuestion('');
+      setAnswer('');
+    }
+  };
 
-    const defaultFlashcards = [
-        { front: 'What is a class in Java?', back: 'A class is a blueprint for creating objects.' },
-        { front: 'What is inheritance in Java?', back: 'Inheritance allows a new class to inherit from an existing class.' },
-        { front: 'What is polymorphism in Java?', back: 'Polymorphism lets objects be treated as instances of their parent class.' },
-    ];
+  const handleRemoveCard = (indexToRemove) => {
+    setFlashcards(flashcards.filter((_, index) => index !== indexToRemove));
+  };
 
-    useEffect(() => {
-        setFlashcards(ensureEvenNumberOfFlashcards(defaultFlashcards));
-    }, []);
+  return (
+    <section className="p-10 bg-base-100 text-base-content min-h-screen">
+      <h2 className="text-3xl font-bold text-center text-primary mb-8">Flashcard Generator</h2>
 
-    const ensureEvenNumberOfFlashcards = (cards) => {
-        if (cards.length % 2 !== 0) {
-            return [...cards, { front: '', back: '' }];
-        }
-        return cards;
-    };
+      {/* Input Section */}
+      <div className="w-full max-w-lg p-6 bg-neutral rounded-lg shadow-xl mx-auto mb-6">
+        <input
+          type="text"
+          value={question}
+          onChange={(e) => setQuestion(e.target.value)}
+          placeholder="Enter the question"
+          className="input input-bordered input-primary w-full mb-4"
+        />
+        <input
+          type="text"
+          value={answer}
+          onChange={(e) => setAnswer(e.target.value)}
+          placeholder="Enter the answer"
+          className="input input-bordered input-primary w-full mb-4"
+        />
+        <button onClick={handleAddCard} className="btn btn-primary w-full">
+          Add Card
+        </button>
+      </div>
 
-    const handleCardClick = (index) => {
-        setFlipped(prev => ({
-            ...prev,
-            [index]: !prev[index]
-        }));
-    };
-
-    const handleAddCard = () => {
-        setFlashcards(prevCards => [
-            ...prevCards,
-            { front: 'New Card Front', back: 'New Card Back' }
-        ]);
-    };
-
-    const handleRemoveCard = (index) => {
-        setFlashcards(prevCards => prevCards.filter((_, i) => i !== index));
-    };
-
-    const handleSubmit = async () => {
-        if (!text.trim()) return;
-
-        const newCard = { front: text, back: 'Generated back content' };
-        setFlashcards(prevCards => [...prevCards, newCard]);
-        setText('');
-    };
-
-    return (
-        <div className="min-h-screen bg-neutral text-neutral-content p-8">
-            <div className="max-w-4xl mx-auto">
-                <h1 className="text-4xl font-bold mb-4 text-center">Generate Flashcards</h1>
-                <div className="bg-neutral-focus p-6 rounded-lg shadow-lg mb-8">
-                    <textarea
-                        value={text}
-                        onChange={(e) => setText(e.target.value)}
-                        placeholder="Enter text to generate a card..."
-                        className="textarea textarea-bordered w-full mb-4 bg-neutral-content text-neutral p-4 rounded"
-                    />
-                    <button
-                        onClick={handleSubmit}
-                        className="btn btn-primary w-full mb-4"
-                    >
-                        Add Flashcard
-                    </button>
-                    <button
-                        onClick={handleAddCard}
-                        className="btn btn-secondary w-full mb-4"
-                    >
-                        Add Blank Flashcard
-                    </button>
+      {/* Flashcards Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {flashcards.map((flashcard, index) => (
+          <div
+            key={index}
+            className="relative"
+          >
+            <FlashCard
+              front={
+                <div className="w-full h-64 flex items-center justify-center bg-gradient-to-r from-primary to-blue-500 text-white p-8 rounded-lg shadow-lg">
+                  <h3 className="text-2xl font-semibold">{flashcard.front}</h3>
                 </div>
-
-                {flashcards.length > 0 && (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {flashcards.map((flashcard, index) => (
-                            <div key={index} className="relative">
-                                <div
-                                    className={`transform transition-transform duration-500 perspective cursor-pointer ${flipped[index] ? 'rotate-y-180' : ''
-                                        }`}
-                                    onClick={() => handleCardClick(index)}
-                                >
-                                    <div className="card-front bg-primary text-primary-content p-4 rounded-lg shadow-lg absolute w-full h-full backface-hidden">
-                                        <h2 className="text-xl font-bold text-center">{flashcard.front}</h2>
-                                    </div>
-                                    <div className="card-back bg-secondary text-secondary-content p-4 rounded-lg shadow-lg absolute w-full h-full rotate-y-180 backface-hidden">
-                                        <h2 className="text-xl font-bold text-center">{flashcard.back}</h2>
-                                    </div>
-                                </div>
-                                <button
-                                    onClick={() => handleRemoveCard(index)}
-                                    className="btn btn-error absolute top-2 right-2"
-                                >
-                                    Remove
-                                </button>
-                            </div>
-                        ))}
-                    </div>
-                )}
-            </div>
-
-            <style jsx>{`
-                .perspective {
-                    perspective: 1000px;
-                }
-
-                .backface-hidden {
-                    backface-visibility: hidden;
-                }
-
-                .rotate-y-180 {
-                    transform: rotateY(180deg);
-                }
-
-                .card-front, .card-back {
-                    width: 100%;
-                    height: 250px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    border-radius: 1rem;
-                    transition: all 0.6s ease-in-out;
-                }
-
-                .rotate-y-180 {
-                    transition: transform 0.6s ease-in-out;
-                }
-
-                .card-front {
-                    transform: rotateY(0deg);
-                }
-
-                .card-back {
-                    transform: rotateY(180deg);
-                }
-            `}</style>
-        </div>
-    );
+              }
+              back={
+                <div className="w-full h-64 flex items-center justify-center bg-gradient-to-r from-secondary to-purple-500 text-white p-8 rounded-lg shadow-lg">
+                  <h3 className="text-2xl font-semibold">{flashcard.back}</h3>
+                </div>
+              }
+              width="100%"
+              height="100%"
+              className="transition-transform duration-500"
+            />
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                handleRemoveCard(index);
+              }}
+              className="btn btn-error w-full mt-4 hover:scale-105 transition-transform duration-300"
+            >
+              Remove Card
+            </button>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
 }
