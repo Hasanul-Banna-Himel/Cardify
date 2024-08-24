@@ -1,36 +1,21 @@
 'use client';
 
-import { useUser } from '@clerk/nextjs';
-import { Box, Container, Paper, TextField, Typography, Button, Grid, Card, CardActionArea, CardContent } from '@mui/material';
-import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
-import { db } from '@/firebase';
-import { writeBatch, doc, collection, getDoc } from 'firebase/firestore';
-
 
 export default function Generate() {
-    const { user } = useUser();
     const [flashcards, setFlashcards] = useState([]);
     const [flipped, setFlipped] = useState({});
     const [text, setText] = useState('');
-    const [open, setOpen] = useState(false);
-    const router = useRouter();
-
 
     const defaultFlashcards = [
         { front: 'What is a class in Java?', back: 'A class is a blueprint for creating objects.' },
         { front: 'What is inheritance in Java?', back: 'Inheritance allows a new class to inherit from an existing class.' },
         { front: 'What is polymorphism in Java?', back: 'Polymorphism lets objects be treated as instances of their parent class.' },
-        { front: 'What is an interface in Java?', back: 'An interface is a reference type with method signatures and constants.' },
-        { front: 'What is the difference between "==" and ".equals()" in Java?', back: '"==" checks for reference equality; ".equals()" checks for value equality.' },
-        { front: 'What is encapsulation in Java?', back: 'Encapsulation hides the internal state and requires all interaction to be performed through an object’s methods.' } // Added new flashcard
     ];
-
 
     useEffect(() => {
         setFlashcards(ensureEvenNumberOfFlashcards(defaultFlashcards));
     }, []);
-
 
     const ensureEvenNumberOfFlashcards = (cards) => {
         if (cards.length % 2 !== 0) {
@@ -39,34 +24,6 @@ export default function Generate() {
         return cards;
     };
 
-
-    const handleSubmit = async () => {
-        document.querySelector("#loader-parent").style.display = "flex";
-
-
-        try {
-            const response = await fetch('api/generate', {
-                method: 'POST',
-                body: text,
-            });
-
-
-            const data = await response.json();
-            const evenCards = ensureEvenNumberOfFlashcards(data);
-            setFlashcards(evenCards);
-        } finally {
-            document.querySelector("#loader-parent").style.display = "none";
-            window.dispatchEvent(new Event('resize'));
-            let elements = document.querySelectorAll(".MuiGrid-root");
-            Array.from(elements).forEach(el => {
-                el.style.display = "none";
-                el.offsetHeight;
-                el.style.display = "";
-            });
-        }
-    };
-
-
     const handleCardClick = (index) => {
         setFlipped(prev => ({
             ...prev,
@@ -74,137 +31,113 @@ export default function Generate() {
         }));
     };
 
-
-    const handleEnter = (ev) => {
-        if (ev.key === "Enter") {
-            ev.preventDefault();
-            handleSubmit();
-        }
+    const handleAddCard = () => {
+        setFlashcards(prevCards => [
+            ...prevCards,
+            { front: 'New Card Front', back: 'New Card Back' }
+        ]);
     };
 
+    const handleRemoveCard = (index) => {
+        setFlashcards(prevCards => prevCards.filter((_, i) => i !== index));
+    };
+
+    const handleSubmit = async () => {
+        if (!text.trim()) return;
+
+        const newCard = { front: text, back: 'Generated back content' };
+        setFlashcards(prevCards => [...prevCards, newCard]);
+        setText('');
+    };
 
     return (
-        <Container maxWidth="md">
-            <Box sx={{ mt: 4, mb: 6, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                <Typography variant="h4" sx={{ mb: 2, fontFamily: 'Poppins, sans-serif', color: '#333', fontWeight: 600 }}>
-                    Generate Flashcards
-                </Typography>
-                <Paper sx={{ p: 4, width: '100%', borderRadius: 2, boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)' }}>
-                    <TextField
+        <div className="min-h-screen bg-neutral text-neutral-content p-8">
+            <div className="max-w-4xl mx-auto">
+                <h1 className="text-4xl font-bold mb-4 text-center">Generate Flashcards</h1>
+                <div className="bg-neutral-focus p-6 rounded-lg shadow-lg mb-8">
+                    <textarea
                         value={text}
                         onChange={(e) => setText(e.target.value)}
-                        onKeyDown={handleEnter}
-                        label="Enter text"
-                        fullWidth
-                        multiline
-                        rows={4}
-                        variant="outlined"
-                        sx={{
-                            mb: 2,
-                            '& .MuiOutlinedInput-root': { borderRadius: 2 },
-                            '& .MuiInputLabel-root': { fontFamily: 'Poppins, sans-serif', fontWeight: 500 },
-                            '& .MuiInputBase-input': { fontFamily: 'Poppins, sans-serif' },
-                        }}
+                        placeholder="Enter text to generate a card..."
+                        className="textarea textarea-bordered w-full mb-4 bg-neutral-content text-neutral p-4 rounded"
                     />
-                    <Button
-                        variant="contained"
-                        color="primary"
+                    <button
                         onClick={handleSubmit}
-                        fullWidth
-                        sx={{
-                            fontFamily: 'Poppins, sans-serif',
-                            background: 'linear-gradient(45deg, #FF4081 30%, #FF80AB 90%)',
-                            color: '#fff',
-                            '&:hover': {
-                                background: 'linear-gradient(45deg, #FF80AB 30%, #FF4081 90%)',
-                            },
-                            borderRadius: 2,
-                            boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
-                            fontWeight: 600,
-                        }}
+                        className="btn btn-primary w-full mb-4"
                     >
-                        Cardify
-                    </Button>
-                </Paper>
-            </Box>
-            <div id="loader-parent">
-                <div className="lds-ellipsis">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
+                        Add Flashcard
+                    </button>
+                    <button
+                        onClick={handleAddCard}
+                        className="btn btn-secondary w-full mb-4"
+                    >
+                        Add Blank Flashcard
+                    </button>
                 </div>
+
+                {flashcards.length > 0 && (
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {flashcards.map((flashcard, index) => (
+                            <div key={index} className="relative">
+                                <div
+                                    className={`transform transition-transform duration-500 perspective cursor-pointer ${flipped[index] ? 'rotate-y-180' : ''
+                                        }`}
+                                    onClick={() => handleCardClick(index)}
+                                >
+                                    <div className="card-front bg-primary text-primary-content p-4 rounded-lg shadow-lg absolute w-full h-full backface-hidden">
+                                        <h2 className="text-xl font-bold text-center">{flashcard.front}</h2>
+                                    </div>
+                                    <div className="card-back bg-secondary text-secondary-content p-4 rounded-lg shadow-lg absolute w-full h-full rotate-y-180 backface-hidden">
+                                        <h2 className="text-xl font-bold text-center">{flashcard.back}</h2>
+                                    </div>
+                                </div>
+                                <button
+                                    onClick={() => handleRemoveCard(index)}
+                                    className="btn btn-error absolute top-2 right-2"
+                                >
+                                    Remove
+                                </button>
+                            </div>
+                        ))}
+                    </div>
+                )}
             </div>
 
+            <style jsx>{`
+                .perspective {
+                    perspective: 1000px;
+                }
 
-            {flashcards.length > 0 && (
-                <Box sx={{ mt: 4 }}>
-                    <Typography textAlign="center" variant="h5" sx={{ mb: 2, fontFamily: 'Poppins, sans-serif', color: '#333', fontWeight: 600 }}>
-                        Cardify Preview
-                    </Typography>
-                    <Grid container spacing={3}>
-                        {flashcards.map((flashcard, index) => (
-                            <Grid item xs={12} sm={6} md={4} key={index} className="animate-fadeIn">
-                                <Card
-                                  className={`card ${flipped[index] ? 'animate-flip' : ''}`}
-                                  sx={{ borderRadius: 2, boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)', perspective: '1000px' }}
-                                >
-                                    <CardActionArea onClick={() => handleCardClick(index)}>
-                                        <CardContent sx={{ position: 'relative', height: '250px' }}>
-                                            <Box
-                                                sx={{
-                                                    position: 'relative',
-                                                    width: '100%',
-                                                    height: '100%',
-                                                    transformStyle: 'preserve-3d',
-                                                    transition: 'transform 0.6s',
-                                                    transform: flipped[index] ? 'rotateY(180deg)' : 'rotateY(0deg)',
-                                                }}
-                                            >
-                                                <Box sx={{
-                                                    position: 'absolute',
-                                                    width: '100%',
-                                                    height: '100%',
-                                                    backgroundColor: '#64B5F6', // Light Blue for the front
-                                                    color: 'white',
-                                                    backfaceVisibility: 'hidden',
-                                                    display: 'flex',
-                                                    justifyContent: 'center',
-                                                    alignItems: 'center',
-                                                    padding: 2,
-                                                    zIndex: flipped[index] ? 0 : 1,
-                                                }}>
-                                                    <Typography variant="h5" sx={{ fontFamily: 'Poppins, sans-serif', textAlign: 'center', fontWeight: 500 }}>
-                                                        {flashcard.front}
-                                                    </Typography>
-                                                </Box>
-                                                <Box sx={{
-                                                    position: 'absolute',
-                                                    width: '100%',
-                                                    height: '100%',
-                                                    backgroundColor: '#81C784', // Light Green for the back
-                                                    color: 'white',
-                                                    backfaceVisibility: 'hidden',
-                                                    display: 'flex',
-                                                    justifyContent: 'center',
-                                                    alignItems: 'center',
-                                                    padding: 2,
-                                                    transform: 'rotateY(180deg)',
-                                                    zIndex: flipped[index] ? 1 : 0,
-                                                }}>
-                                                    <Typography variant="h5" sx={{ fontFamily: 'Poppins, sans-serif', textAlign: 'center', fontWeight: 500 }}>
-                                                        {flashcard.back}
-                                                    </Typography>
-                                                </Box>
-                                            </Box>
-                                        </CardContent>
-                                    </CardActionArea>
-                                </Card>
-                            </Grid>
-                        ))}
-                    </Grid>
-                </Box>
-            )}
-        </Container>
+                .backface-hidden {
+                    backface-visibility: hidden;
+                }
+
+                .rotate-y-180 {
+                    transform: rotateY(180deg);
+                }
+
+                .card-front, .card-back {
+                    width: 100%;
+                    height: 250px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-radius: 1rem;
+                    transition: all 0.6s ease-in-out;
+                }
+
+                .rotate-y-180 {
+                    transition: transform 0.6s ease-in-out;
+                }
+
+                .card-front {
+                    transform: rotateY(0deg);
+                }
+
+                .card-back {
+                    transform: rotateY(180deg);
+                }
+            `}</style>
+        </div>
     );
 }
