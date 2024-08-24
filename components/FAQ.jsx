@@ -26,7 +26,7 @@ export default function FAQ() {
               How do I create a flashcard?
             </div>
             <div className="collapse-content bg-primary text-primary-content peer-checked:bg-secondary peer-checked:text-secondary-content transition-colors animate-fadeIn">
-              <p>Simply click the 'Create' button, fill out the information, and save your flashcard to a deck.</p>
+              <p>Simply click the &apos;Create&apos; button, fill out the information, and save your flashcard to a deck.</p>
             </div>
           </div>
           <div className="bg-base-200 collapse">
