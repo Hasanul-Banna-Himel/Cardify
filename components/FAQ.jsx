@@ -13,37 +13,37 @@ export default function FAQ() {
         <div className="md:w-2/3 space-y-4">
           <div className="bg-base-200 collapse">
             <input type="checkbox" className="peer" />
-            <div className="collapse-title bg-primary text-primary-content peer-checked:bg-secondary peer-checked:text-secondary-content transition-colors">
+            <div className="collapse-title bg-primary text-primary-content peer-checked:bg-accent peer-checked:text-black transition-colors">
               What is Cardify?
             </div>
-            <div className="collapse-content bg-primary text-primary-content peer-checked:bg-secondary peer-checked:text-secondary-content transition-colors animate-fadeIn">
+            <div className="collapse-content bg-accent text-black peer-checked:bg-accent peer-checked:text-black transition-colors animate-fadeIn">
               <p>Cardify is a tool designed to help users create, organize, and study flashcards for efficient learning.</p>
             </div>
           </div>
           <div className="bg-base-200 collapse">
             <input type="checkbox" className="peer" />
-            <div className="collapse-title bg-primary text-primary-content peer-checked:bg-secondary peer-checked:text-secondary-content transition-colors">
+            <div className="collapse-title bg-primary text-primary-content peer-checked:bg-accent peer-checked:text-black transition-colors">
               How do I create a flashcard?
             </div>
-            <div className="collapse-content bg-primary text-primary-content peer-checked:bg-secondary peer-checked:text-secondary-content transition-colors animate-fadeIn">
+            <div className="collapse-content bg-primary text-primary-content peer-checked:bg-accent peer-checked:text-black transition-colors animate-fadeIn">
               <p>Simply click the &apos;Create&apos; button, fill out the information, and save your flashcard to a deck.</p>
             </div>
           </div>
           <div className="bg-base-200 collapse">
             <input type="checkbox" className="peer" />
-            <div className="collapse-title bg-primary text-primary-content peer-checked:bg-secondary peer-checked:text-secondary-content transition-colors">
+            <div className="collapse-title bg-primary text-primary-content peer-checked:bg-accent peer-checked:text-black transition-colors">
               Can I import flashcards from other platforms?
             </div>
-            <div className="collapse-content bg-primary text-primary-content peer-checked:bg-secondary peer-checked:text-secondary-content transition-colors animate-fadeIn">
+            <div className="collapse-content bg-primary text-primary-content peer-checked:bg-accent peer-checked:text-black transition-colors animate-fadeIn">
               <p>Yes, you can import flashcards from CSV files to easily transfer your existing decks.</p>
             </div>
           </div>
           <div className="bg-base-200 collapse">
             <input type="checkbox" className="peer" />
-            <div className="collapse-title bg-primary text-primary-content peer-checked:bg-secondary peer-checked:text-secondary-content transition-colors">
+            <div className="collapse-title bg-primary text-primary-content peer-checked:bg-accent peer-checked:text-black transition-colors">
               Is there a mobile app for Cardify?
             </div>
-            <div className="collapse-content bg-primary text-primary-content peer-checked:bg-secondary peer-checked:text-secondary-content transition-colors animate-fadeIn">
+            <div className="collapse-content bg-primary text-primary-content peer-checked:bg-accent peer-checked:text-black transition-colors animate-fadeIn">
               <p>Currently, Cardify is available as a web application, but we are working on a mobile app for future release.</p>
             </div>
           </div>

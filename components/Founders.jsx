@@ -4,7 +4,7 @@ export default function Founders() {
   return (
     <section className="bg-base-100 text-accent py-10">
       <div className="container mx-auto text-center">
-        <h2 className="text-4xl font-bold mb-8 text-primary">Meet Our Founders</h2>
+        <h2 className="text-4xl font-bold mb-8 text-neutral-content underline">Meet Our Founders</h2>
         <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
           <div className="card glass w-96 mx-auto transition-transform duration-500 transform hover:scale-105 hover:shadow-xl">
             <figure>

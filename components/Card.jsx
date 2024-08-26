@@ -21,7 +21,7 @@ export default function FlashcardGenerator() {
 
   return (
     <section className="p-10 bg-base-100 text-base-content min-h-screen">
-      <h2 className="text-3xl font-bold text-center text-primary mb-8">Flashcard Generator</h2>
+      <h2 className="text-3xl font-bold text-center text-neutral-content mb-8">Flashcard Generator</h2>
 
       {/* Input Section */}
       <div className="w-full max-w-lg p-6 bg-neutral rounded-lg shadow-xl mx-auto mb-6">

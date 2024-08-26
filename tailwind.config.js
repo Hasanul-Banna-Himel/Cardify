@@ -4,11 +4,11 @@ module.exports = {
     themes: [
       {
         dark: {
-          primary: "#1e3a8a", // A deep blue
-          secondary: "#9333ea", // A vibrant purple
-          accent: "#f59e0b", // A warm amber
-          neutral: "#1f2937", // A dark gray
-          "base-100": "#f3f4f6", // A light gray background
+          primary: "#1e3a8a", // A deep blue for dark mode
+          secondary: "#9333ea", // A vibrant purple for dark mode
+          accent: "#f59e0b", // A warm amber for dark mode
+          neutral: "#1f2937", // A dark gray for dark mode
+          "base-100": "#1f2937", // A dark gray background for dark mode
           info: "#0ea5e9", // A bright blue for info
           success: "#10b981", // A fresh green for success
           warning: "#f97316", // A bold orange for warnings
@@ -17,7 +17,7 @@ module.exports = {
       },
     ],
   },
-  darkMode: "class", // Use dark mode with class
+  darkMode: "class", // Enable dark mode via class
   content: [
     './pages/**/*.{js,jsx}',
     './components/**/*.{js,jsx}',

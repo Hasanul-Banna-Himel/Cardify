@@ -3,7 +3,7 @@ import React from "react";
 export default function Hero({onButtonClick}) {
   return (
     <section
-      className="hero min-h-screen bg-neutral text-primary"
+      className="hero min-h-screen bg-neutral text-neutral-content"
       style={{
         backgroundImage: "url('https://img.daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.webp')",
       }}
