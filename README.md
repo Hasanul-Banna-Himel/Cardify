@@ -4,8 +4,8 @@ Cardify is a flashcard application built with Next.js. It allows users to create
 
 ## Made by
 - **Ashfin**: https://github.com/Ashfinn 
-- **Ashfin**: https://github.com/Ashfinn 
-- **Ashfin**: https://github.com/Ashfinn 
+- **Himel**: https://github.com/Hasanul-Banna-Himel
+- **Mehreen**: https://github.com/Noblesse013 
 
 ## Features
 
